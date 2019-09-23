@@ -1,0 +1,14 @@
+$grid-breakpoints: (
+  'xs': 0,
+  'sm': 600px,
+  'md': 960px,
+  'lg': 1280px - 16px,
+  'xl': 1280px - 16px
+);
+
+// [ vuetify 預設字型變更 ]
+$body-font-family: 'Noto Sans TC', Arial, sans-serif;
+
+@import '~vuetify/src/styles/styles.sass';
+
+
