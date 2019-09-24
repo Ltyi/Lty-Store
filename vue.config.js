@@ -15,7 +15,5 @@ module.exports = {
         .tap(opt => Object.assign(opt, { data: `@import '~@/styles/main.scss';` }))
     })
   },
-  publicPath: process.env.NODE_ENV === 'production'
-    ? '/Lty-Store/'
-    : '/'
+  publicPath: '/',
 }

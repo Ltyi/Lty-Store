@@ -2,7 +2,7 @@
 
 **此為電商網站的練習作品 (無金流)**  
 主要使用 Vue.js 2.6.1 / Vuetify 2.x / Firebase  
-[前台DEMO](https://ltyi.github.io/Lty-Store/)  
+[前台DEMO](https://lty-store.firebaseapp.com)  
 [後台](https://github.com/Ltyi/Lty-Store-ADMIN)  
 
 ---
