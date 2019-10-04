@@ -37,7 +37,7 @@
       <v-card-title
         class="pb-4 pt-3 body-2 justify-center font-weight-bold"
       >
-        <div>購物車{{ cartMenu }}</div>
+        <div>購物車</div>
       </v-card-title>
 
       <v-divider></v-divider>
