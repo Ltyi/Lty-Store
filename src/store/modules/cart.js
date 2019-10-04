@@ -4,6 +4,7 @@ import { db } from '@/db';
 
 const state = {
   // [ 購物車 ]
+  cartMenu: false,
   clientCart: [],
   checkoutLoading: false,
   checkoutStatus: 'review',
@@ -41,6 +42,11 @@ const getters = {
 };
 
 const mutations = {
+  // [ 右上角購物視窗開關 ]
+  cartMenuToggle(state, payload) {
+    state.cartMenu = payload;
+  },
+
   // [ 獲取 localStorage 中的購物車 ]
   getLocalStorage(state) {
     if (localStorage.getItem('clientCart')) {
@@ -142,6 +148,7 @@ const actions = {
     } else {
       commit('incrementItemQuantity', cartItem);
     }
+    commit('cartMenuToggle', true);
   },
 
   // [ 獲取結帳收件人資訊 ]

@@ -4,6 +4,7 @@
     bottom
     nudge-bottom="5"
     :min-width="$vuetify.breakpoint.xsOnly ? '100%' : 300"
+    v-model="cartMenu"
   >
     <!-- 選單開關 -->
     <template v-slot:activator="{ on }">
@@ -36,7 +37,7 @@
       <v-card-title
         class="pb-4 pt-3 body-2 justify-center font-weight-bold"
       >
-        <div>購物車</div>
+        <div>購物車{{ cartMenu }}</div>
       </v-card-title>
 
       <v-divider></v-divider>
@@ -89,8 +90,25 @@ import { mapGetters, mapMutations } from 'vuex';
 
 export default {
   name: 'TheCart',
+
+  data() {
+    return {
+      menu: false,
+    };
+  },
+
   computed: {
     ...mapGetters('cart', ['cart']),
+
+    // [ Toggle ]
+    cartMenu: {
+      get() {
+        return this.$store.state.cart.cartMenu;
+      },
+      set(value) {
+        this.$store.commit('cart/cartMenuToggle', value);
+      },
+    },
 
     // [ 計算購物車內產品數量 ]
     count() {

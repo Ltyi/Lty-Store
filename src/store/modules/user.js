@@ -8,7 +8,7 @@ import { db, auth } from '@/db';
 const state = {
   // [ 用戶資訊 ]
   loginLoading: false,
-  userUID: '',
+  userUID: null,
   userEmail: null,
   // [ 訂單 ]
   orders: [],
@@ -44,7 +44,7 @@ const mutations = {
       state.userUID = payload.uid;
     } else {
       state.userEmail = null;
-      state.userUID = '';
+      state.userUID = null;
     }
   },
 

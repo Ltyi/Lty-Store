@@ -90,7 +90,7 @@
                     tile
                     block
                     color="primary"
-                    @click="addProductToCart({id: product.id, color: color, quantity: 1})"
+                    @click="addToCart(product.id)"
                   >
                     加入購物車
                   </v-btn>
@@ -160,6 +160,17 @@ export default {
 
   methods: {
     ...mapActions('cart', ['addProductToCart']),
+
+    addToCart(id) {
+      if (this.color) {
+        const product = {
+          id,
+          color: this.color,
+          quantity: 1,
+        };
+        this.addProductToCart(product);
+      }
+    },
   },
 
   mounted() {
@@ -168,9 +179,3 @@ export default {
 
 };
 </script>
-
-<style lang="scss" scoped>
-  [v-cloak] {
-    display: none;
-  }
-</style>
