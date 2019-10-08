@@ -6,7 +6,6 @@ const state = {
   // [ 購物車 ]
   cartMenu: false,
   clientCart: [],
-  checkoutLoading: false,
   checkoutStatus: 'review',
   recipientName: '',
   recipientEmail: '',
@@ -109,11 +108,6 @@ const mutations = {
     state.checkoutStatus = payload;
   },
 
-  // [ 設定結帳畫面讀取狀態 ]
-  setCheckoutLoading(state, payload) {
-    state.checkoutLoading = payload;
-  },
-
   // [ 設定收件人資訊 (與cartPayment 雙向綁定) ]
   setRecipientName(state, payload) {
     state.recipientName = payload;
@@ -153,7 +147,7 @@ const actions = {
 
   // [ 獲取結帳收件人資訊 ]
   getRecipientDetail({ rootState, commit }) {
-    commit('setCheckoutLoading', true);
+    commit('setLoading', true, { root: true });
     db.collection('users').doc(rootState.user.userUID).get()
       .then((doc) => {
         if (doc.exists) {
@@ -163,7 +157,7 @@ const actions = {
           commit('setRecipientPhone', data.phone);
           commit('setRecipientAddress', data.address);
           commit('setRecipientInfoUpdate', false);
-          commit('setCheckoutLoading', false);
+          commit('setLoading', false, { root: true });
         }
       })
       .catch((error) => {
@@ -173,6 +167,7 @@ const actions = {
 
   // [ 結帳 ]
   checkout({ rootState, getters, commit }) {
+    commit('setLoading', true, { root: true });
     const userData = db.collection('users').doc(rootState.user.userUID);
     const orderData = db.collection('orders').doc();
     const today = new Date().getTime();
@@ -204,6 +199,7 @@ const actions = {
     orderData.set(orderDetail).then(() => {
       commit('resetCart');
       commit('setCheckoutStatus', 'complete');
+      commit('setLoading', false, { root: true });
     }).catch((error) => {
       console.log(error);
     });

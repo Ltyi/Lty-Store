@@ -18,7 +18,7 @@ export default new Vuex.Store({
     products: [],
     category: [],
     productSort: 'default',
-    productLoading: false,
+    isLoading: false,
   },
 
   mutations: {
@@ -31,8 +31,8 @@ export default new Vuex.Store({
     },
 
     // [ 設定產品讀取狀態 ]
-    setProductLoading(state, payload) {
-      state.productLoading = payload;
+    setLoading(state, payload) {
+      state.isLoading = payload;
     },
   },
 
@@ -44,13 +44,13 @@ export default new Vuex.Store({
 
     // [ 綁定firebase 產品列表至 products 這個陣列 ]
     bindProductsRef: firestoreAction(({ commit, bindFirestoreRef }) => {
-      commit('setProductLoading', true);
+      commit('setLoading', true);
       bindFirestoreRef(
         'products',
         db.collection('products')
           .where('enable', '==', true),
       ).then(() => {
-        commit('setProductLoading', false);
+        commit('setLoading', false);
       });
     }),
   },

@@ -1,16 +1,6 @@
 <template>
   <v-row>
-    <v-overlay :value="productLoading" opacity="0.3">
-      <v-progress-circular
-        :size="70"
-        :width="7"
-        color="primary lighten-3"
-        class="align-self-center"
-        indeterminate
-      ></v-progress-circular>
-    </v-overlay>
-
-    <v-overlay :value="productEmpty && !productLoading" opacity="0" z-index="0">
+    <v-overlay :value="!productsFilter.length && !isLoading" opacity="0" z-index="0">
       <h2 class="title primary--text">查無商品</h2>
     </v-overlay>
 
@@ -38,15 +28,7 @@ export default {
   },
 
   computed: {
-    ...mapState(['products', 'productSort', 'productLoading']),
-
-    // [ 無產品資訊時顯示 ]
-    productEmpty() {
-      if (!this.productsFilter.length) {
-        return true;
-      }
-      return false;
-    },
+    ...mapState(['products', 'productSort', 'isLoading']),
 
     // [ 產品依條件過濾排序 ]
     productsFilter() {

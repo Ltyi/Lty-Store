@@ -38,27 +38,14 @@
           </v-card>
         </v-form>
       </v-col>
-
-      <!-- 登入讀取畫面 -->
-      <v-overlay :value="loginLoading" opacity="0.3">
-        <v-progress-circular
-          :size="70"
-          :width="7"
-          color="primary lighten-3"
-          class="align-self-center"
-          indeterminate
-        ></v-progress-circular>
-      </v-overlay>
-
     </v-row>
   </v-container>
 </template>
 
 <script>
-import { mapState } from 'vuex';
-
 export default {
   name: 'Login',
+
   data() {
     return {
       valid: false,
@@ -75,10 +62,6 @@ export default {
         ],
       },
     };
-  },
-
-  computed: {
-    ...mapState('user', ['loginLoading']),
   },
 
   methods: {

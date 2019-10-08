@@ -44,17 +44,6 @@
           </v-card>
         </v-form>
       </v-col>
-
-      <!-- 註冊讀取畫面 -->
-      <v-overlay :value="loginLoading" opacity="0.3">
-        <v-progress-circular
-          :size="70"
-          :width="7"
-          color="primary lighten-3"
-          class="align-self-center"
-          indeterminate
-        ></v-progress-circular>
-      </v-overlay>
     </v-row>
   </v-container>
 </template>
@@ -88,7 +77,7 @@ export default {
   },
 
   computed: {
-    ...mapState('user', ['errorMessage', 'loginLoading']),
+    ...mapState('user', ['errorMessage']),
   },
 
   methods: {

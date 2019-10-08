@@ -90,17 +90,6 @@
         </v-card>
       </v-col>
     </v-row>
-
-    <!-- 讀取畫面 -->
-    <v-overlay :value="checkoutLoading" opacity="0.3">
-      <v-progress-circular
-        :size="70"
-        :width="7"
-        color="primary lighten-3"
-        class="align-self-center"
-        indeterminate
-      ></v-progress-circular>
-    </v-overlay>
   </v-container>
 </template>
 
@@ -125,7 +114,7 @@ export default {
 
   computed: {
     ...mapGetters('cart', ['cart']),
-    ...mapState('cart', ['checkoutStatus', 'checkoutLoading']),
+    ...mapState('cart', ['checkoutStatus']),
 
     step() {
       if (this.checkoutStatus === 'review') {

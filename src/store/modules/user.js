@@ -7,7 +7,6 @@ import { db, auth } from '@/db';
 
 const state = {
   // [ 用戶資訊 ]
-  loginLoading: false,
   userUID: null,
   userEmail: null,
   // [ 訂單 ]
@@ -52,11 +51,6 @@ const mutations = {
     state.ordersLoading = payload;
   },
 
-  // [ 登入/註冊讀取畫面 ]
-  setLoginLoading(state, payload) {
-    state.loginLoading = payload;
-  },
-
   // [ 設定錯誤訊息 ]
   setErrorMessage(state, payload) {
     state.errorMessage = payload;
@@ -71,7 +65,7 @@ const actions = {
 
   // [ 會員註冊 ]
   userSignUp({ commit, dispatch }, payload) {
-    commit('setLoginLoading', true);
+    commit('setLoading', true, { root: true });
     auth.createUserWithEmailAndPassword(payload.email, payload.password)
       .then((data) => {
         // 註冊後同時在資料庫創建用戶資訊
@@ -97,11 +91,11 @@ const actions = {
 
   // [ 會員登入 ]
   userLogIn({ commit }, payload) {
-    commit('setLoginLoading', true);
+    commit('setLoading', true, { root: true });
     auth.signInWithEmailAndPassword(payload.email, payload.password)
       .then((data) => {
         commit('setUser', data.user);
-        commit('setLoginLoading', false);
+        commit('setLoading', false, { root: true });
         router.push(payload.path);
       })
       .catch((error) => {
